@@ -33,6 +33,10 @@ function ExpenseForm(props) {
         props.onSaveExpenseData(expenseData);
         setUserInput({ enteredTitle: "", enteredAmount: "", enteredDate: "" });
     };
+
+    const closeFormHandler = () => {
+        props.onCloseEditingHandler();
+    };
     return (
         <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
@@ -66,7 +70,12 @@ function ExpenseForm(props) {
                 </div>
             </div>
             <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
+                <button type="submit" onClick={closeFormHandler}>
+                    Add Expense
+                </button>
+                <button type="button" onClick={closeFormHandler}>
+                    Cancel
+                </button>
             </div>
         </form>
     );
