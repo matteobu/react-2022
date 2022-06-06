@@ -39,9 +39,10 @@ const App = () => {
         console.log(expenses);
     };
 
-    const dateToFilterHandler = () => {
-        console.log("TRIGGERED ON APP");
-        expenses.filter((data) => expenses.date === data);
+    const dateToFilterHandler = (filteredYear) => {
+        console.log("filteredYear", filteredYear);
+        // console.log("expenses", expenses);
+        // console.log("expenses", expenses[0].date.getFullYear());
     };
     return (
         <div>

@@ -8,10 +8,15 @@ function Expenses(props) {
     const [filteredYear, setFilteredYear] = useState("2020");
     // console.log("props", props);
     const filteredDateHandler = (selectedYear) => {
-        // console.log("TRIGGERED ON EXPENSES", filteredDate);
+        // console.log("TRIGGERED ON EXPENSES", selectedYear);
         setFilteredYear(selectedYear);
-        props.onDateToFilter(filteredYear);
+        props.onDateToFilter(selectedYear);
     };
+
+    const filteredExpense = props.items.filter((data) => {
+        return data.date.getFullYear().toString() === filteredYear;
+    });
+
     return (
         <div>
             <Card className="expenses">
@@ -20,8 +25,8 @@ function Expenses(props) {
                     onFilteredDate={filteredDateHandler}
                 />
 
-                {props.items &&
-                    props.items.map((item) => (
+                {filteredExpense &&
+                    filteredExpense.map((item) => (
                         <ExpenseItem
                             key={item.id}
                             title={item.title}
