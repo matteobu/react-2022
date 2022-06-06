@@ -25,7 +25,9 @@ function Expenses(props) {
                     onFilteredDate={filteredDateHandler}
                 />
 
-                {filteredExpense &&
+                {filteredExpense.length === 0 ? (
+                    <p>NO EXPENSE TO DISPLAY</p>
+                ) : (
                     filteredExpense.map((item) => (
                         <ExpenseItem
                             key={item.id}
@@ -33,7 +35,8 @@ function Expenses(props) {
                             amount={item.amount}
                             date={item.date}
                         />
-                    ))}
+                    ))
+                )}
             </Card>
         </div>
     );
