@@ -9,14 +9,17 @@ const AddUser = () => {
     const [enteredUserAge, setEnteredUserAge] = useState("");
 
     const addUserHandler = (e) => {
-        console.log("enteredUserName", enteredUserName);
-        console.log("enteredUserAge", enteredUserAge);
+        if (
+            enteredUserAge.trim().length === 0 ||
+            enteredUserName.trim().length === 0
+        ) {
+            return;
+        }
 
-        // setUsers([
-        //     ...users,
-        //     { name: e.target[0].value, age: e.target[1].value },
-        // ]);
-        // console.log("users", users);
+        if (+enteredUserAge < 1) {
+            return;
+        }
+
         setEnteredUserName("");
         setEnteredUserAge("");
         e.preventDefault();
