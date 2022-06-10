@@ -3,8 +3,7 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./AddUser.module.css";
 
-const AddUser = () => {
-    const [users, setUsers] = useState([]);
+const AddUser = (props) => {
     const [enteredUserName, setEnteredUserName] = useState("");
     const [enteredUserAge, setEnteredUserAge] = useState("");
 
@@ -14,6 +13,8 @@ const AddUser = () => {
             enteredUserName.trim().length === 0
         ) {
             return;
+        } else {
+            props.onAddedUser({ name: enteredUserName, age: enteredUserAge });
         }
 
         if (+enteredUserAge < 1) {
@@ -27,11 +28,9 @@ const AddUser = () => {
 
     const usernameChangeHandler = (e) => {
         setEnteredUserName(e.target.value);
-        // console.log("e.target.value", e.target.value);
     };
     const ageChangeHandler = (e) => {
         setEnteredUserAge(e.target.value);
-        // console.log("e.target.value", e.target.value);
     };
 
     return (
@@ -54,12 +53,6 @@ const AddUser = () => {
                 {/* <button type="submit">Add User</button> */}
                 <Button type="submit">Add User</Button>
             </form>
-            {users &&
-                users.map((user) => (
-                    <div key={user.name}>
-                        {user.name} - {user.age}
-                    </div>
-                ))}
         </Card>
     );
 };
