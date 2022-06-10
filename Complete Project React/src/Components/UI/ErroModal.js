@@ -4,9 +4,13 @@ import Button from "./Button";
 import classes from "./ErrorModal.module.css";
 
 const ErroModal = (props) => {
+    const errorToDisable = () => {
+        props.onError();
+    };
+
     return (
         <>
-            <div className={classes.backdrop}></div>
+            <div className={classes.backdrop} onClick={errorToDisable}></div>
             <Card className={classes.modal}>
                 <header className={classes.header}>
                     <h2>{props.title}</h2>
@@ -15,7 +19,7 @@ const ErroModal = (props) => {
                     <p>{props.message}</p>
                 </div>
                 <footer className={classes.actions}>
-                    <Button> Okay </Button>
+                    <Button onClick={errorToDisable}> Okay </Button>
                 </footer>
             </Card>
         </>

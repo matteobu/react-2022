@@ -13,6 +13,4 @@ const Button = (props) => {
     );
 };
 
-Button.propTypes = {};
-
 export default Button;
