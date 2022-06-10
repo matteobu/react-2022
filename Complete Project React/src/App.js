@@ -3,17 +3,19 @@ import AddUser from "./Components/Users/AddUser";
 import UsersList from "./Components/Users/UsersList";
 
 function App() {
-    const [users, setUsers] = useState([]);
+    const [usersList, setUsersList] = useState([]);
 
-    const addedUserHandler = (userDatas) => {
-        console.log("userDatas", userDatas);
-        setUsers({ userDatas });
+    const addUserHandler = (uName, uAge) => {
+        // console.log("userDatas", userDatas);
+        setUsersList((prevUsersList) => {
+            return [...prevUsersList, { name: uName, age: uAge }];
+        });
     };
 
     return (
         <div>
-            <AddUser onAddedUser={addedUserHandler} />
-            {/* <UsersList usersList={users} /> */}
+            <AddUser onAddUser={addUserHandler} />
+            <UsersList users={usersList} />
         </div>
     );
 }
