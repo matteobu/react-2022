@@ -11,10 +11,16 @@ const Login = (props) => {
     const [formIsValid, setFormIsValid] = useState(false);
     // console.log("CONSOLE LOG before USE EFFECT");
     useEffect(() => {
-        setFormIsValid(
-            enteredEmail.includes("@") && enteredPassword.trim().length > 6
-        );
-        // console.log("****** CONSOLE LOG inside USE EFFECT *******");
+        const identifier = setTimeout(() => {
+            setFormIsValid(
+                enteredEmail.includes("@") && enteredPassword.trim().length > 6
+            );
+            console.log("****** CONSOLE LOG inside USE EFFECT *******");
+        }, 500);
+        return () => {
+            clearTimeout(identifier);
+            console.log("clean up");
+        };
     }, [enteredEmail, enteredPassword]);
 
     // console.log("CONSOLE LOG after USE EFFECT");
