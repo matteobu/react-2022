@@ -43,16 +43,17 @@ const Login = (props) => {
     //     console.log("EFFECT RUNNING ");
     // });
 
-    // useEffect(() => {
-    //     const identifier = setTimeout(() => {
-    //         setFormIsValid(
-    //             enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    //         );
-    //     }, 500);
-    //     return () => {
-    //         clearTimeout(identifier);
-    //     };
-    // }, [enteredEmail, enteredPassword]);
+    const { isValid: emailIsValid } = emailState;
+    const { isValid: passwordIsValid } = emailState;
+
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            setFormIsValid(emailIsValid && passwordIsValid);
+        }, 500);
+        return () => {
+            clearTimeout(identifier);
+        };
+    }, [emailIsValid, passwordIsValid]);
 
     // console.log("CONSOLE LOG after USE EFFECT");
     const emailChangeHandler = (event) => {
